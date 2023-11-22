@@ -29,8 +29,11 @@ public class WebPageTest {
 		}
 		Utility utill = new Utility(driver);
 		utill.selectFilter("Deals", "New", "Special offer");
-		utill.selectFilter("Brands", "Alcatel", "Samsung", "TCL", "Apple");
+		//utill.selectFilter("Deals", "all");
+		//utill.selectFilter("Brands", "all");
+		utill.selectFilter("Brands", "Apple", "Samsung");
 		utill.selectFilter("Operating System", "Android", "iPadOS", "Other");
+		//utill.selectFilter("Operating System", "all");
 		Thread.sleep(5000);
 		driver.quit();
 		

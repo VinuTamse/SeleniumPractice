@@ -1,6 +1,7 @@
 package utils;
 
 import java.time.Duration;
+import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -20,7 +21,7 @@ public class Utility {
 	public  void selectFilter(String filtertype, String... args)  {
 		String filter = "//legend[normalize-space(text())='"+filtertype+"']";
 		driver.findElement(By.xpath(filter)).click();
-		if (args.length != 0) {
+		if (args.length != 0 && (!args[0].equalsIgnoreCase("all"))) {
 			for (String str : args) {
 				
 				WebElement ele = driver.findElement(By.xpath("//span[contains(text(),'"+str+"') and @class='filter-display-name']"));
@@ -28,6 +29,12 @@ public class Utility {
 				new WebDriverWait(driver, Duration.ofSeconds(45)).until(ExpectedConditions.elementToBeClickable(checkbox)).click();
 				
 				
+			}
+		}
+		else if (args.length==1 && args[0].equalsIgnoreCase("all")) {
+			List<WebElement> elements = driver.findElements(By.xpath("//span[@class='filter-display-name']"));
+			for (WebElement e : elements) {
+				e.click();
 			}
 		}
 		else {
